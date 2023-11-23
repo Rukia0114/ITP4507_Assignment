@@ -16,11 +16,14 @@ public class Main {
         InputStreamReader is = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(is);
 
+       
+
         String[] factoryNames = {
             "CreateTeamFactory", "SetCurrentTeamCommandFactory",
             "AddPlayerCommandFactory","ModifyPlayerPositionCommandFactory","DeletePlayerCommandFactory",
             "ShowCurrentTeamCommandFactory","DisplayAllTeamCommandFactory","ChangeTeamNameCommandFactory",
-            "UndoCommandFactory","RedoCommandFactory"};
+            };
+
 
         CommandFactory[] factories = new CommandFactory[factoryNames.length];
 
@@ -28,6 +31,7 @@ public class Main {
             for (int i = 0; i < factories.length; i++) {
                 factories[i] = (CommandFactory) Class.forName(factoryNames[i]).newInstance();
                 factories[i].setTeam(teams);
+                factories[i].setCaretaker(caretaker);
             }
         
         while (true) {
@@ -54,7 +58,7 @@ public class Main {
                 for (CommandFactory factory : factories) {
                     factory.setCurrentTeam(currentTeam);
                 }
-                undocommandStack.push(c);
+                //undocommandStack.push(c);
                 break;
 
             case "a": //add player
@@ -92,16 +96,17 @@ public class Main {
                 break;
 
             case "u": //undo
-                if (!undocommandStack.isEmpty()) {
-                    Command undoCommand = undocommandStack.pop();
-                    undoCommand.undo();
-                    // undoCommand.toString();
-                    // c = factories[8].create();
-                    // c.execute();
-                    redocommandStack.push(undoCommand);
-                }else{
-                    System.out.println("Undo stack is empty");
-                }
+                // if (!undocommandStack.isEmpty()) {
+                //     Command undoCommand = undocommandStack.pop();
+                //     undoCommand.undo();
+                //     redocommandStack.push(undoCommand);
+                // }else{
+                //     System.out.println("Undo stack is empty");
+                // }
+                // break;
+                UndoCommandFactory undoCommandFactory = new UndoCommandFactory(undocommandStack, redocommandStack);
+                c = undoCommandFactory.create();
+                c.execute();
                 break;
                 // if (!undocommandStack.isEmpty()) {
                 //     Command undoCommand = undocommandStack.pop();
@@ -116,14 +121,16 @@ public class Main {
                 // break;
     
             case "r": //redo
-                if (!redocommandStack.isEmpty()) {
-                    Command redoCommand = redocommandStack.pop();
-                    redoCommand.execute();
-                    //redoCommand.toString();
-                    undocommandStack.push(redoCommand);
-                }else{
-                    System.out.println("Undo stack is empty");
-                }
+                // if (!redocommandStack.isEmpty()) {
+                //     Command redoCommand = redocommandStack.pop();
+                //     redoCommand.execute();
+                //     undocommandStack.push(redoCommand);
+                // }else{
+                //     System.out.println("Undo stack is empty");
+                // }
+                RedoCommandFactory redoCommandFactory = new RedoCommandFactory(undocommandStack, redocommandStack);
+                c = redoCommandFactory.create();
+                c.execute();
                 break;
 
             case "l": //list undo + redo list

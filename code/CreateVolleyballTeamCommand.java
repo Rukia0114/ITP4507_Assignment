@@ -43,6 +43,8 @@ public class CreateVolleyballTeamCommand extends CreateTeamCommand {
 
     @Override
     public void redo() {
-        execute();
+        team = new VolleyballTeam(teamID);
+        team.setName(teamName);
+        super.teams.add(team);
     }
 }

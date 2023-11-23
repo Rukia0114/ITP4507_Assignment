@@ -7,7 +7,7 @@ import java.util.Vector;
 public class ChangeTeamNameCommandFactory implements CommandFactory {
     private Team currentTeam;
     private Vector<Team> teams;
-
+    private Caretaker caretaker;
 
 
     @Override
@@ -18,6 +18,11 @@ public class ChangeTeamNameCommandFactory implements CommandFactory {
     @Override
     public void setCurrentTeam(Team currentTeam) {
         this.currentTeam = currentTeam;
+    }
+
+    @Override
+    public void setCaretaker(Caretaker caretaker) {
+        this.caretaker = caretaker;
     }
 
     @Override
@@ -33,7 +38,11 @@ public class ChangeTeamNameCommandFactory implements CommandFactory {
         System.out.print("Please input new name of the current team: ");
         String newName = br.readLine();
 
-        return new ChangeTeamNameCommand(currentTeam, newName);
+        return new ChangeTeamNameCommand(currentTeam, newName, caretaker);
+        
+        
     }
+
+
 
 }

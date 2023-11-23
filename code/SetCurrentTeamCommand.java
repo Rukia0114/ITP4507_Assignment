@@ -32,13 +32,14 @@ public class SetCurrentTeamCommand implements Command {
 
     @Override
     public void undo() {
-        System.out.println("Command (" + this.toString() + ")" + " re undone");
+        //System.out.println("Command (" + this.toString() + ")" + " re undone");
         factory.setCurrentTeam(previousTeam);
     }
 
     @Override
     public void redo() {
-        execute();
         System.out.println("Command (" + this.toString() + ")" + " is redone");
+        execute();
+        
     }
 }

@@ -25,8 +25,8 @@ public class DeletePlayerCommand implements Command {
 
     @Override
     public void redo() {
-       execute();
-       System.out.println("Command (" + this.toString() + ")" + " is redone");
+       currentTeam.remove(player);
+       //System.out.println("Command (" + this.toString() + ")" + " is redone");
     }
 
 }

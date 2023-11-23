@@ -48,6 +48,11 @@ public class CreateTeamFactory implements CommandFactory {
        
     }
 
+    @Override
+    public void setCaretaker(Caretaker caretaker) {
+       
+    }
+
 
     
 }

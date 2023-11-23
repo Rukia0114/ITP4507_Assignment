@@ -1,35 +1,34 @@
 import java.util.Stack;
 
 public class UndoCommand implements Command {
-    // private Stack<Memento> undoStack;
-    private Command command;
+    private Stack<Command> undoStack;
+    private Stack<Command> redoStack;
 
-    public UndoCommand(Command command) {
-        this.command = command;
-    }
-    public void setCommand(Command command) {
-        this.command = command;
+    public UndoCommand(Stack<Command> undoStack, Stack<Command> redoStack) {
+        this.undoStack = undoStack;
+        this.redoStack = redoStack;
     }
 
     @Override
     public void execute() {
-        // if (!undoStack.isEmpty()) {
-        //     Memento memento = undoStack.pop();
-        //     memento.restore();
-        // } else {
-        //     System.out.println("Nothing to undo.");
-        // }
-
-        System.out.println("Command (" + command.toString() +" )" + "is undone.");
+        if (!undoStack.isEmpty()) {
+            Command command = undoStack.pop();
+            command.undo();
+            redoStack.push(command);
+            //System.out.println("Command (" + command.toString() +" )" + "is undone.");
+        } else {
+            System.out.println("Nothing to undo.");
+        }
     }
 
     @Override
     public void undo() {
-       
+        
     }
 
     @Override
     public void redo() {
-    
+       
     }
+
 }

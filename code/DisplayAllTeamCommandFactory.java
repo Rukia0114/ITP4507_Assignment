@@ -17,5 +17,10 @@ public class DisplayAllTeamCommandFactory implements CommandFactory {
     public Command create() throws IOException {
         return new DisplayAllTeamCommand(teams);
     }
+
+    @Override
+    public void setCaretaker(Caretaker caretaker) {
+        
+    }
     
 }

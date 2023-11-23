@@ -30,4 +30,9 @@ public class SetCurrentTeamCommandFactory implements CommandFactory {
     public Team getCurrentTeam() {
         return this.currentTeam;
     }
+
+    @Override
+    public void setCaretaker(Caretaker caretaker) {
+    
+    }
 }

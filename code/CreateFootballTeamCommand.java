@@ -42,7 +42,13 @@ public class CreateFootballTeamCommand extends CreateTeamCommand {
 
     @Override
     public void redo() {
-       execute();
+        team = new FootballTeam(teamID);
+        team.setName(teamName);
+        super.teams.add(team);
+        // team = new FootballTeam(teamID);
+        // team.setName(teamName);
+        // super.teams.add(team);
+        //  System.out.println("Command (" + this.toString() + ")" + " is redone");
     }
     
 }

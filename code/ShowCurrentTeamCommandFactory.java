@@ -19,5 +19,10 @@ public class ShowCurrentTeamCommandFactory implements CommandFactory{
     public Command create() throws IOException {
         return new ShowCurrentTeamCommand(currentTeam);
     }
+
+    @Override
+    public void setCaretaker(Caretaker caretaker) {
+      
+    }
     
 }

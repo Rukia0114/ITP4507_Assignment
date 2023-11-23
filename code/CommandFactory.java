@@ -5,4 +5,5 @@ public interface CommandFactory{
     public void setTeam(Vector<Team> teams);
     public void setCurrentTeam(Team currentTeam);
     public Command create()  throws IOException;
+    public void setCaretaker(Caretaker caretaker);
 }

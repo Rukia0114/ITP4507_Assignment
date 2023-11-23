@@ -49,4 +49,9 @@ public class DeletePlayerCommandFactory implements CommandFactory {
         }
         return null;
     }
+
+    @Override
+    public void setCaretaker(Caretaker caretaker) {
+      
+    }
 }

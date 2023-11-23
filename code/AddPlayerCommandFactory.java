@@ -35,5 +35,10 @@ public class AddPlayerCommandFactory implements CommandFactory{
     
         return new AddPlayerCommand(currentTeam,playerID,playerName,position);
     }
+
+    @Override
+    public void setCaretaker(Caretaker caretaker) {
+        //no need apply
+    }
     
 }

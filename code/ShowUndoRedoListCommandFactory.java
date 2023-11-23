@@ -27,4 +27,9 @@ public class ShowUndoRedoListCommandFactory implements CommandFactory {
     public Command create() throws IOException {
         return new ShowUndoRedoListCommand(undoStack, redoStack);
     }
+
+    @Override
+    public void setCaretaker(Caretaker caretaker) {
+      
+    }
 }

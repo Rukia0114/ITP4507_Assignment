@@ -9,6 +9,7 @@ public class ModifyPlayerPositionCommandFactory implements CommandFactory {
     private Team currentTeam;
     private Vector<Team> teams;
     //private Stack<Memento> undoStack;
+    private Caretaker caretaker;
     
     @Override
     public void setTeam(Vector<Team> teams) {
@@ -18,6 +19,11 @@ public class ModifyPlayerPositionCommandFactory implements CommandFactory {
     @Override
     public void setCurrentTeam(Team currentTeam) {
         this.currentTeam = currentTeam;
+    }
+
+    @Override
+    public void setCaretaker(Caretaker caretaker) {
+      this.caretaker = caretaker;
     }
 
     @Override
@@ -42,7 +48,7 @@ public class ModifyPlayerPositionCommandFactory implements CommandFactory {
         currentTeam.updatePlayerPosition();
         int newPosition = Integer.parseInt(br.readLine());
 
-        return new ModifyPlayerPositionCommand(player, newPosition);
+        return new ModifyPlayerPositionCommand(player, newPosition,caretaker,currentTeam);
     }
 
     public Player findPlayerByID(String playerID) { 
@@ -55,4 +61,6 @@ public class ModifyPlayerPositionCommandFactory implements CommandFactory {
         }
         return null;
     }
+
+
 }
